@@ -53,3 +53,7 @@
 ## GitHub 统计 / GitHub スタッツ
 
 ![Matsuzaka Yuki's GitHub Stats](profile/stats.svg)
+
+## LyraVoid 组织统计 / Organization Stats
+
+![LyraVoid's GitHub Stats](profile/org-stats.svg)
