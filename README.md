@@ -109,6 +109,6 @@
 
 ---
 
-## GitHub Stats
+## GitHub 统计 / GitHub スタッツ
 
 ![Matsuzaka Yuki's GitHub Stats](profile/stats.svg)
