@@ -56,9 +56,9 @@
 ## 📜 冒险记录 | Adventure Log
 
 <div align="center">
-  <img src="https://github-readme-stats-one-bice.vercel.app/api?username=matsuzaka-yuki&locale=cn&show_icons=true&theme=default&hide_border=true&title_color=FFB6C1&icon_color=FFB6C1&text_color=666&bg_color=ffffff" alt="GitHub stats" height="165" />
-  <img src="https://github-readme-stats-one-bice.vercel.app/api/top-langs/?username=matsuzaka-yuki&locale=cn&langs_count=8&layout=compact&theme=default&hide_border=true&title_color=FFB6C1&text_color=666&bg_color=ffffff" alt="Top Langs" height="165" />
-  <img src="https://streak-stats.demolab.com/?user=matsuzaka-yuki&locale=zh_Hans&theme=default&hide_border=true&ring=FFB6C1&fire=FFB6C1&currStreakLabel=FFB6C1" alt="GitHub Streak" height="165" />
+  <img src="https://github-readme-stats-one-bice.vercel.app/api?username=matsuzaka-yuki&locale=cn&show_icons=true&theme=default&hide_border=true&title_color=FFB6C1&icon_color=FFB6C1&text_color=666&bg_color=ffffff" alt="GitHub stats" height="175" />
+  &nbsp;&nbsp;
+  <img src="https://github-readme-stats-one-bice.vercel.app/api/top-langs/?username=matsuzaka-yuki&locale=cn&langs_count=8&layout=compact&theme=default&hide_border=true&title_color=FFB6C1&text_color=666&bg_color=ffffff" alt="Top Langs" height="175" />
 </div>
 
 <br/>
