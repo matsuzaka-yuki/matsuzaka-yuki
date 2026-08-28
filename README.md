@@ -60,15 +60,6 @@
   &nbsp;&nbsp;
   <img src="https://github-readme-stats-one-bice.vercel.app/api/top-langs/?username=matsuzaka-yuki&locale=cn&langs_count=8&layout=compact&theme=default&hide_border=true&title_color=FFB6C1&text_color=666&bg_color=ffffff" alt="Top Langs" height="175" />
 </div>
-
-<br/>
-
-<div align="center">
-
-![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=matsuzaka-yuki&theme=minimal&color=FFB6C1&line=FFB6C1&point=FFB6C1&hide_border=true)
-
-</div>
-
 <br/>
 
 ## ✉️ 通讯 | Communications
