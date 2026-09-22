@@ -88,19 +88,24 @@ def org_metrics(name):
 
 
 def user_metrics(name, orgs):
-    # Every repository under the account counts, forks included: that is the set the
-    # card used to sum, and dropping the forks lost 49 stars.
-    owned = [r for r in gh_api("/users/%s/repos?per_page=100&type=owner" % name)
+    # Everything the account is responsible for: its own repositories plus the public
+    # repositories of the organizations it belongs to, the same span the reference
+    # profile covers with role=OWNER,ORGANIZATION_MEMBER. Forks count too: they are
+    # repositories under the account and dropping them lost 49 stars.
+    repos = [r for r in gh_api("/users/%s/repos?per_page=100&type=owner" % name)
              if not r["private"]]
+    for org in orgs:
+        repos += [r for r in (gh_api("/orgs/%s/repos?per_page=100&type=public" % org) or [])
+                  if not r["private"]]
     year = datetime.date.today().year
     scopes = ["user:" + name] + ["org:" + org for org in orgs]
     commits = sum(search_count("commits", "author:%s+%s+committer-date:>=%d-01-01" % (name, s, year))
                   for s in scopes)
-    return [("star", "Stars", sum(r["stargazers_count"] for r in owned)),
+    return [("star", "Stars", sum(r["stargazers_count"] for r in repos)),
             ("git-commit", "Commits %d" % year, commits),
             ("git-pull-request", "Pull Requests", search_count("issues", "author:%s+type:pr" % name)),
             ("issue-opened", "Issues", search_count("issues", "author:%s+type:issue" % name)),
-            ("repo", "Repos", len(owned))]
+            ("repo", "Repos", len(repos))]
 
 
 def languages_for(name):
