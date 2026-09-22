@@ -65,7 +65,7 @@ organization working on Astro-based blog themes and Android root and module tool
 <div align="center">
   <img src="profile/stats.svg" alt="GitHub statistics" height="140" />
   <br/>
-  <img src="profile/top-langs.svg" alt="Most used languages" height="190" />
+  <img src="profile/top-langs.svg" alt="Most used languages" height="140" />
 </div>
 
 ---
@@ -74,8 +74,8 @@ organization working on Astro-based blog themes and Android root and module tool
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-matsuzaka--yuki-FFB6C1?style=flat-square&logo=github&logoColor=white)](https://github.com/matsuzaka-yuki)
-[![Platform](https://img.shields.io/badge/Platform-Arch_Linux-FFB6C1?style=flat-square&logo=archlinux&logoColor=white)](https://archlinux.org/)
+[![GitHub](https://img.shields.io/badge/GitHub-matsuzaka--yuki-2563EB?style=flat-square&logo=github&logoColor=white)](https://github.com/matsuzaka-yuki)
+[![Platform](https://img.shields.io/badge/Platform-Arch_Linux-2563EB?style=flat-square&logo=archlinux&logoColor=white)](https://archlinux.org/)
 
 </div>
 

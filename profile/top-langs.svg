@@ -1,273 +1,31 @@
-
-      <svg
-        width="300"
-        height="190"
-        viewBox="0 0 300 190"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-labelledby="descId"
-      >
-        <title id="titleId"></title>
-        <desc id="descId"></desc>
-        <style>
-          .header {
-            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
-            fill: #FFB6C1;
-            animation: fadeInAnimation 0.8s ease-in-out forwards;
-          }
-          @supports(-moz-appearance: auto) {
-            /* Selector detects Firefox */
-            .header { font-size: 15.5px; }
-          }
-          
-    @keyframes slideInAnimation {
-      from {
-        width: 0;
-      }
-      to {
-        width: calc(100%-100px);
-      }
-    }
-    @keyframes growWidthAnimation {
-      from {
-        width: 0;
-      }
-      to {
-        width: 100%;
-      }
-    }
-    .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #666666;
-    }
-    @supports(-moz-appearance: auto) {
-      /* Selector detects Firefox */
-      .stat { font-size:12px; }
-    }
-    .bold { font-weight: 700 }
-    .lang-name {
-      font: 400 11px "Segoe UI", Ubuntu, Sans-Serif;
-      fill: #666666;
-    }
-    .stagger {
-      opacity: 0;
-      animation: fadeInAnimation 0.3s ease-in-out forwards;
-    }
-    #rect-mask rect{
-      animation: slideInAnimation 1s ease-in-out forwards;
-    }
-    .lang-progress{
-      animation: growWidthAnimation 0.6s ease-in-out forwards;
-    }
-    
-
-          
-      /* Animations */
-      @keyframes scaleInAnimation {
-        from {
-          transform: translate(-5px, 5px) scale(0);
-        }
-        to {
-          transform: translate(-5px, 5px) scale(1);
-        }
-      }
-      @keyframes fadeInAnimation {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-    
-          
-        </style>
-
-        
-
-        <rect
-          data-testid="card-bg"
-          x="0.5"
-          y="0.5"
-          rx="4.5"
-          height="99%"
-          stroke="#e4e2e2"
-          width="299"
-          fill="#ffffff"
-          stroke-opacity="0"
-        />
-
-        
-      <g
-        data-testid="card-title"
-        transform="translate(25, 35)"
-      >
-        <g transform="translate(0, 0)">
-      <text
-        x="0"
-        y="0"
-        class="header"
-        data-testid="header"
-      >Most Used Languages</text>
-    </g>
-      </g>
-    
-
-        <g
-          data-testid="main-card-body"
-          transform="translate(0, 55)"
-        >
-          
-    <svg data-testid="lang-items" x="25">
-      
-  
-      <mask id="rect-mask">
-          <rect x="0" y="0" width="250" height="8" fill="white" rx="5"/>
-        </mask>
-        
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="0"
-          y="0"
-          width="50.13"
-          height="8"
-          fill="#555555"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="50.13"
-          y="0"
-          width="44.72"
-          height="8"
-          fill="#A97BFF"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="94.85"
-          y="0"
-          width="42.59"
-          height="8"
-          fill="#e34c26"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="137.44"
-          y="0"
-          width="35.12"
-          height="8"
-          fill="#4F5D95"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="172.56"
-          y="0"
-          width="30.22"
-          height="8"
-          fill="#3572A5"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="202.78"
-          y="0"
-          width="20.53"
-          height="8"
-          fill="#663399"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="223.31"
-          y="0"
-          width="16.51"
-          height="8"
-          fill="#f1e05a"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="239.82"
-          y="0"
-          width="10.18"
-          height="8"
-          fill="#b07219"
-        />
-      
-      
-    <g transform="translate(0, 25)">
-      <g transform="translate(0, 0)"><g transform="translate(0, 0)">
-    <g class="stagger" style="animation-delay: 450ms">
-      <circle cx="5" cy="6" r="5" fill="#555555" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        C 20.05%
-      </text>
-    </g>
-  </g><g transform="translate(0, 25)">
-    <g class="stagger" style="animation-delay: 600ms">
-      <circle cx="5" cy="6" r="5" fill="#A97BFF" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        Kotlin 17.89%
-      </text>
-    </g>
-  </g><g transform="translate(0, 50)">
-    <g class="stagger" style="animation-delay: 750ms">
-      <circle cx="5" cy="6" r="5" fill="#e34c26" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        HTML 17.04%
-      </text>
-    </g>
-  </g><g transform="translate(0, 75)">
-    <g class="stagger" style="animation-delay: 900ms">
-      <circle cx="5" cy="6" r="5" fill="#4F5D95" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        PHP 14.05%
-      </text>
-    </g>
-  </g></g><g transform="translate(150, 0)"><g transform="translate(0, 0)">
-    <g class="stagger" style="animation-delay: 450ms">
-      <circle cx="5" cy="6" r="5" fill="#3572A5" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        Python 12.09%
-      </text>
-    </g>
-  </g><g transform="translate(0, 25)">
-    <g class="stagger" style="animation-delay: 600ms">
-      <circle cx="5" cy="6" r="5" fill="#663399" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        CSS 8.21%
-      </text>
-    </g>
-  </g><g transform="translate(0, 50)">
-    <g class="stagger" style="animation-delay: 750ms">
-      <circle cx="5" cy="6" r="5" fill="#f1e05a" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        JavaScript 6.60%
-      </text>
-    </g>
-  </g><g transform="translate(0, 75)">
-    <g class="stagger" style="animation-delay: 900ms">
-      <circle cx="5" cy="6" r="5" fill="#b07219" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        Java 4.07%
-      </text>
-    </g>
-  </g></g>
-    </g>
-  
-    </svg>
-  
-        </g>
-      </svg>
-    
+<svg width="495" height="140" viewBox="0 0 495 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+  <style>
+    .title { font: 600 17px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #0F172A; }
+    .eyebrow { font: 600 10px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #667085; letter-spacing: 1.6px; }
+    .value { font: 700 21px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #2563EB; }
+    .label { font: 500 9px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #667085; letter-spacing: 1px; }
+    .lang { font: 600 9.5px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #667085; letter-spacing: 0.9px; }
+    .pct { font: 700 11px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #2563EB; }
+  </style>
+  <rect x="0.5" y="0.5" width="494" height="139" rx="12" fill="#FFFFFF" stroke="#DBE3F0"/>
+  <text class="title" x="28" y="42">matsuzaka-yuki</text>
+  <text class="eyebrow" x="467" y="42" text-anchor="end">MOST USED LANGUAGES</text>
+  <line x1="28" y1="60" x2="467" y2="60" stroke="#EAECF0"/>
+  <rect x="28" y="74" width="439" height="10" rx="5" fill="#EEF2F6"/>
+  <rect x="28.0" y="74" width="139.1" height="10" rx="5" fill="#2563EB"/>
+  <rect x="170.1" y="74" width="64.8" height="10" rx="5" fill="#628FF1"/>
+  <rect x="237.9" y="74" width="42.7" height="10" rx="5" fill="#8EAEF5"/>
+  <rect x="283.6" y="74" width="34.7" height="10" rx="5" fill="#B5CAF8"/>
+  <circle cx="32.0" cy="114" r="4" fill="#2563EB"/>
+  <text class="lang" x="42.0" y="117">KOTLIN</text>
+  <text class="pct" x="131.8" y="118" text-anchor="end">32.4%</text>
+  <circle cx="141.8" cy="114" r="4" fill="#628FF1"/>
+  <text class="lang" x="151.8" y="117">C</text>
+  <text class="pct" x="241.5" y="118" text-anchor="end">15.4%</text>
+  <circle cx="251.5" cy="114" r="4" fill="#8EAEF5"/>
+  <text class="lang" x="261.5" y="117">HTML</text>
+  <text class="pct" x="351.2" y="118" text-anchor="end">10.4%</text>
+  <circle cx="361.2" cy="114" r="4" fill="#B5CAF8"/>
+  <text class="lang" x="371.2" y="117">PHP</text>
+  <text class="pct" x="461.0" y="118" text-anchor="end">8.6%</text>
+</svg>

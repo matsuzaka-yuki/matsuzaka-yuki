@@ -13,34 +13,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate top languages card
-        uses: readme-tools/github-readme-stats-action@v1
-        with:
-          card: top-langs
-          options: username=${{ github.repository_owner }}&langs_count=8&layout=compact&hide_border=true&title_color=FFB6C1&text_color=666666&bg_color=ffffff
-          path: profile/top-langs.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fail_on_error: "true"
-
-      - name: Generate personal stats card
+      # Every card is rendered by .github/scripts/stats-card.py, so no third-party
+      # service and no personal access token is involved.
+      - name: Generate cards
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python3 .github/scripts/stats-card.py \
-            --kind user \
+          python3 .github/scripts/stats-card.py --kind user \
             --name "${{ github.repository_owner }}" \
-            --theme light \
-            --out profile/stats.svg
-
-      - name: Generate organization stats card
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python3 .github/scripts/stats-card.py \
-            --kind org \
+            --orgs "LyraVoid,OnyxZygisk,LyraAgent" \
+            --theme blue --out profile/stats.svg
+          python3 .github/scripts/stats-card.py --kind org \
             --name LyraVoid \
-            --theme light \
-            --out profile/org-stats.svg
+            --theme blue --out profile/org-stats.svg
+          python3 .github/scripts/stats-card.py --kind langs \
+            --name "${{ github.repository_owner }}" \
+            --theme blue --out profile/top-langs.svg
 
       - name: Verify cards
         run: |
