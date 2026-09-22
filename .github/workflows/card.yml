@@ -14,7 +14,8 @@ jobs:
       - uses: actions/checkout@v4
 
       # Every card is rendered by .github/scripts/stats-card.py, so no third-party
-      # service and no personal access token is involved.
+      # service and no personal access token is involved. Each card is written twice:
+      # a light file and a -dark twin that the README picks with prefers-color-scheme.
       - name: Generate cards
         env:
           # GITHUB_TOKEN only sees public activity. Add a STATS_TOKEN secret
@@ -24,18 +25,20 @@ jobs:
           python3 .github/scripts/stats-card.py --kind user \
             --name "${{ github.repository_owner }}" \
             --orgs "LyraVoid,OnyxZygisk,LyraAgent" \
-            --theme blue --out profile/stats.svg
+            --theme blue --also-dark --out profile/stats.svg
           python3 .github/scripts/stats-card.py --kind org \
             --name LyraVoid \
-            --theme blue --out profile/org-stats.svg
+            --theme blue --also-dark --out profile/org-stats.svg
           python3 .github/scripts/stats-card.py --kind langs \
             --name "${{ github.repository_owner }}" \
-            --theme blue --out profile/top-langs.svg
+            --theme blue --also-dark --out profile/top-langs.svg
 
       - name: Verify cards
         run: |
           status=0
-          for card in profile/stats.svg profile/top-langs.svg profile/org-stats.svg; do
+          for card in profile/stats.svg profile/stats-dark.svg \
+                      profile/top-langs.svg profile/top-langs-dark.svg \
+                      profile/org-stats.svg profile/org-stats-dark.svg; do
             if [ ! -s "$card" ]; then
               echo "::error file=$card::card was not generated"
               status=1

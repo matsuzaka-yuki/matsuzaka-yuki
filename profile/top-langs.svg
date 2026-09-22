@@ -8,8 +8,8 @@
     .pct { font: 700 11px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #2563EB; }
   </style>
   <rect x="0.5" y="0.5" width="494" height="139" rx="12" fill="#FFFFFF" stroke="#DBE3F0"/>
-  <text class="title" x="28" y="42">matsuzaka-yuki</text>
-  <text class="eyebrow" x="467" y="42" text-anchor="end">MOST USED LANGUAGES</text>
+  <text class="title" x="28" y="42">Languages</text>
+  <text class="eyebrow" x="467" y="42" text-anchor="end">BY CODE SIZE</text>
   <line x1="28" y1="60" x2="467" y2="60" stroke="#EAECF0"/>
   <rect x="28" y="74" width="439" height="10" rx="5" fill="#EEF2F6"/>
   <rect x="28.0" y="74" width="72.9" height="10" rx="5" fill="#2563EB"/>

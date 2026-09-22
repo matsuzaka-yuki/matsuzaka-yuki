@@ -169,7 +169,7 @@ def render_languages(name, languages, theme, out):
     shades = ramp(c["accent"], len(languages))
     bar_x, bar_w, bar_y, bar_h = PAD, WIDTH - 2 * PAD, 74, 10
     edges = columns(len(languages))
-    lines = open_card(c, name, "MOST USED LANGUAGES")
+    lines = open_card(c, "Languages", "BY CODE SIZE")
     lines.append('  <rect x="%d" y="%d" width="%d" height="%d" rx="%d" fill="%s"/>'
                  % (bar_x, bar_y, bar_w, bar_h, bar_h // 2, c["track"]))
     cursor = bar_x
@@ -193,15 +193,26 @@ def main():
     parser.add_argument("--out", required=True)
     parser.add_argument("--theme", default="blue", choices=sorted(THEMES))
     parser.add_argument("--orgs", default="", help="comma separated organizations counted as contributions")
+    parser.add_argument("--also-dark", action="store_true",
+                        help="also render a prefers-color-scheme:dark twin next to --out")
     args = parser.parse_args()
     orgs = [o for o in args.orgs.split(",") if o]
 
+    # Fetch once, draw as many times as there are colour schemes.
     if args.kind == "langs":
-        render_languages(args.name, languages_for(args.name), args.theme, args.out)
+        payload = languages_for(args.name)
+        draw = lambda theme, out: render_languages(args.name, payload, theme, out)
     elif args.kind == "org":
-        render_metrics(args.name, "ORGANIZATION", org_metrics(args.name), args.theme, args.out)
+        payload = org_metrics(args.name)
+        draw = lambda theme, out: render_metrics(args.name, "ORGANIZATION", payload, theme, out)
     else:
-        render_metrics(args.name, "GITHUB STATS", user_metrics(args.name, orgs), args.theme, args.out)
+        payload = user_metrics(args.name, orgs)
+        draw = lambda theme, out: render_metrics(args.name, "GITHUB STATS", payload, theme, out)
+
+    draw(args.theme, args.out)
+    if args.also_dark:
+        dark_out = args.out[:-4] + "-dark.svg" if args.out.endswith(".svg") else args.out + "-dark"
+        draw("dark", dark_out)
 
 
 if __name__ == "__main__":

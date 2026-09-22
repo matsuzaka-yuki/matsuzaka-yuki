@@ -55,7 +55,10 @@ I am an administrator of [**LyraVoid**](https://github.com/LyraVoid), an open-so
 organization working on Astro-based blog themes and Android root and module tooling.
 
 <div align="center">
-  <img src="profile/org-stats.svg" alt="LyraVoid organization statistics" height="140" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="profile/org-stats-dark.svg">
+    <img src="profile/org-stats.svg" alt="LyraVoid organization statistics" height="140">
+  </picture>
 </div>
 
 ---
@@ -63,9 +66,15 @@ organization working on Astro-based blog themes and Android root and module tool
 ## Statistics
 
 <div align="center">
-  <img src="profile/stats.svg" alt="GitHub statistics" height="140" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="profile/stats-dark.svg">
+    <img src="profile/stats.svg" alt="GitHub statistics" height="140">
+  </picture>
   <br/>
-  <img src="profile/top-langs.svg" alt="Most used languages" height="140" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="profile/top-langs-dark.svg">
+    <img src="profile/top-langs.svg" alt="Most used languages" height="140">
+  </picture>
 </div>
 
 ---

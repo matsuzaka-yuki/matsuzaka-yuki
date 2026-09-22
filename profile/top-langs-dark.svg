@@ -1,0 +1,31 @@
+<svg width="495" height="140" viewBox="0 0 495 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+  <style>
+    .title { font: 600 17px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #E6EDF3; }
+    .eyebrow { font: 600 10px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #8B949E; letter-spacing: 1.6px; }
+    .value { font: 700 21px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #58A6FF; }
+    .label { font: 500 9px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #8B949E; letter-spacing: 1px; }
+    .lang { font: 600 9.5px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #8B949E; letter-spacing: 0.9px; }
+    .pct { font: 700 11px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #58A6FF; }
+  </style>
+  <rect x="0.5" y="0.5" width="494" height="139" rx="12" fill="#0D1117" stroke="#30363D"/>
+  <text class="title" x="28" y="42">Languages</text>
+  <text class="eyebrow" x="467" y="42" text-anchor="end">BY CODE SIZE</text>
+  <line x1="28" y1="60" x2="467" y2="60" stroke="#21262D"/>
+  <rect x="28" y="74" width="439" height="10" rx="5" fill="#161B22"/>
+  <rect x="28.0" y="74" width="72.9" height="10" rx="5" fill="#58A6FF"/>
+  <rect x="103.9" y="74" width="64.7" height="10" rx="5" fill="#87BFFF"/>
+  <rect x="171.6" y="74" width="61.5" height="10" rx="5" fill="#A8D1FF"/>
+  <rect x="236.1" y="74" width="50.2" height="10" rx="5" fill="#C6E1FF"/>
+  <circle cx="32.0" cy="114" r="4" fill="#58A6FF"/>
+  <text class="lang" x="42.0" y="117">C</text>
+  <text class="pct" x="131.8" y="118" text-anchor="end">17.3%</text>
+  <circle cx="141.8" cy="114" r="4" fill="#87BFFF"/>
+  <text class="lang" x="151.8" y="117">KOTLIN</text>
+  <text class="pct" x="241.5" y="118" text-anchor="end">15.4%</text>
+  <circle cx="251.5" cy="114" r="4" fill="#A8D1FF"/>
+  <text class="lang" x="261.5" y="117">HTML</text>
+  <text class="pct" x="351.2" y="118" text-anchor="end">14.7%</text>
+  <circle cx="361.2" cy="114" r="4" fill="#C6E1FF"/>
+  <text class="lang" x="371.2" y="117">PHP</text>
+  <text class="pct" x="461.0" y="118" text-anchor="end">12.1%</text>
+</svg>
