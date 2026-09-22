@@ -19,7 +19,7 @@
   <svg x="153.2" y="72" width="13" height="13" viewBox="0 0 16 16" fill="#2563EB">
     <path fill-rule="evenodd" d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/>
   </svg>
-  <text class="value" x="159.7" y="109" text-anchor="middle">2,966</text>
+  <text class="value" x="159.7" y="109" text-anchor="middle">2,100</text>
   <text class="label" x="159.7" y="127" text-anchor="middle">COMMITS 2026</text>
   <line x1="115.8" y1="78" x2="115.8" y2="118" stroke="#EAECF0"/>
   <svg x="241.0" y="72" width="13" height="13" viewBox="0 0 16 16" fill="#2563EB">

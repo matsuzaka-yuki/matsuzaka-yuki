@@ -12,20 +12,20 @@
   <text class="eyebrow" x="467" y="42" text-anchor="end">MOST USED LANGUAGES</text>
   <line x1="28" y1="60" x2="467" y2="60" stroke="#EAECF0"/>
   <rect x="28" y="74" width="439" height="10" rx="5" fill="#EEF2F6"/>
-  <rect x="28.0" y="74" width="139.1" height="10" rx="5" fill="#2563EB"/>
-  <rect x="170.1" y="74" width="64.8" height="10" rx="5" fill="#628FF1"/>
-  <rect x="237.9" y="74" width="42.7" height="10" rx="5" fill="#8EAEF5"/>
-  <rect x="283.6" y="74" width="34.7" height="10" rx="5" fill="#B5CAF8"/>
+  <rect x="28.0" y="74" width="73.0" height="10" rx="5" fill="#2563EB"/>
+  <rect x="104.0" y="74" width="64.8" height="10" rx="5" fill="#628FF1"/>
+  <rect x="171.8" y="74" width="61.5" height="10" rx="5" fill="#8EAEF5"/>
+  <rect x="236.3" y="74" width="50.2" height="10" rx="5" fill="#B5CAF8"/>
   <circle cx="32.0" cy="114" r="4" fill="#2563EB"/>
-  <text class="lang" x="42.0" y="117">KOTLIN</text>
-  <text class="pct" x="131.8" y="118" text-anchor="end">32.4%</text>
+  <text class="lang" x="42.0" y="117">C</text>
+  <text class="pct" x="131.8" y="118" text-anchor="end">17.3%</text>
   <circle cx="141.8" cy="114" r="4" fill="#628FF1"/>
-  <text class="lang" x="151.8" y="117">C</text>
+  <text class="lang" x="151.8" y="117">KOTLIN</text>
   <text class="pct" x="241.5" y="118" text-anchor="end">15.4%</text>
   <circle cx="251.5" cy="114" r="4" fill="#8EAEF5"/>
   <text class="lang" x="261.5" y="117">HTML</text>
-  <text class="pct" x="351.2" y="118" text-anchor="end">10.4%</text>
+  <text class="pct" x="351.2" y="118" text-anchor="end">14.7%</text>
   <circle cx="361.2" cy="114" r="4" fill="#B5CAF8"/>
   <text class="lang" x="371.2" y="117">PHP</text>
-  <text class="pct" x="461.0" y="118" text-anchor="end">8.6%</text>
+  <text class="pct" x="461.0" y="118" text-anchor="end">12.1%</text>
 </svg>
