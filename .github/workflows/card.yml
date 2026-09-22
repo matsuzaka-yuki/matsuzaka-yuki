@@ -17,7 +17,9 @@ jobs:
       # service and no personal access token is involved.
       - name: Generate cards
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN only sees public activity. Add a STATS_TOKEN secret
+          # (classic PAT with read:user) to also count private contributions.
+          GH_TOKEN: ${{ secrets.STATS_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           python3 .github/scripts/stats-card.py --kind user \
             --name "${{ github.repository_owner }}" \

@@ -33,22 +33,17 @@ THEMES = {
 WIDTH, HEIGHT = 495, 140
 PAD = 28
 
-LANG_QUERY = """query($login: String!) {
-  user(login: $login) {
-    repositories(first: 100, ownerAffiliations: OWNER, isFork: false, privacy: PUBLIC) {
-      nodes { languages(first: 10, orderBy: {field: SIZE, direction: DESC}) { edges { size node { name } } } }
-    }
-  }
-}"""
-
-
-def gh_api(path, paginate=True):
+def gh_api(path, paginate=True, optional=False):
+    """Run gh api. With optional=True an unreadable resource yields None instead of
+    aborting the run; some repositories are blocked (HTTP 451) and cannot be read."""
     cmd = ["gh", "api"]
     if paginate:
         cmd += ["--paginate", "--slurp"]
     cmd.append(path)
     proc = subprocess.run(cmd, capture_output=True, text=True)
     if proc.returncode != 0:
+        if optional:
+            return None
         raise SystemExit("gh api failed for %s: %s" % (path, proc.stderr.strip()))
     payload = json.loads(proc.stdout)
     if not paginate:
@@ -93,7 +88,10 @@ def org_metrics(name):
 
 
 def user_metrics(name, orgs):
-    owned = [r for r in gh_api("/users/%s/repos?per_page=100&type=owner" % name) if not r["fork"]]
+    # Every repository under the account counts, forks included: that is the set the
+    # card used to sum, and dropping the forks lost 49 stars.
+    owned = [r for r in gh_api("/users/%s/repos?per_page=100&type=owner" % name)
+             if not r["private"]]
     year = datetime.date.today().year
     scopes = ["user:" + name] + ["org:" + org for org in orgs]
     commits = sum(search_count("commits", "author:%s+%s+committer-date:>=%d-01-01" % (name, s, year))
@@ -106,15 +104,15 @@ def user_metrics(name, orgs):
 
 
 def languages_for(name):
-    proc = subprocess.run(["gh", "api", "graphql", "-f", "query=" + LANG_QUERY,
-                           "-f", "login=" + name], capture_output=True, text=True)
-    if proc.returncode != 0:
-        raise SystemExit("gh graphql failed: %s" % proc.stderr.strip())
-    payload = json.loads(proc.stdout)
+    """Aggregate the public repositories over REST. GraphQL would return whatever the
+    calling token can see, so a local run and the workflow would disagree."""
     totals = {}
-    for repo in payload["data"]["user"]["repositories"]["nodes"]:
-        for edge in repo["languages"]["edges"]:
-            totals[edge["node"]["name"]] = totals.get(edge["node"]["name"], 0) + edge["size"]
+    for repo in gh_api("/users/%s/repos?per_page=100&type=owner" % name):
+        if repo["fork"] or repo["private"]:
+            continue  # languages describe the code written here, not upstream projects
+        sizes = gh_api("/repos/%s/languages" % repo["full_name"], paginate=False, optional=True)
+        for lang, size in (sizes or {}).items():
+            totals[lang] = totals.get(lang, 0) + size
     overall = float(sum(totals.values())) or 1.0
     ranked = sorted(totals.items(), key=lambda kv: kv[1], reverse=True)[:4]
     return [(lang, size / overall) for lang, size in ranked]

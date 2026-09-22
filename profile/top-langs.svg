@@ -12,10 +12,10 @@
   <text class="eyebrow" x="467" y="42" text-anchor="end">MOST USED LANGUAGES</text>
   <line x1="28" y1="60" x2="467" y2="60" stroke="#EAECF0"/>
   <rect x="28" y="74" width="439" height="10" rx="5" fill="#EEF2F6"/>
-  <rect x="28.0" y="74" width="73.0" height="10" rx="5" fill="#2563EB"/>
-  <rect x="104.0" y="74" width="64.8" height="10" rx="5" fill="#628FF1"/>
-  <rect x="171.8" y="74" width="61.5" height="10" rx="5" fill="#8EAEF5"/>
-  <rect x="236.3" y="74" width="50.2" height="10" rx="5" fill="#B5CAF8"/>
+  <rect x="28.0" y="74" width="72.9" height="10" rx="5" fill="#2563EB"/>
+  <rect x="103.9" y="74" width="64.7" height="10" rx="5" fill="#628FF1"/>
+  <rect x="171.6" y="74" width="61.5" height="10" rx="5" fill="#8EAEF5"/>
+  <rect x="236.1" y="74" width="50.2" height="10" rx="5" fill="#B5CAF8"/>
   <circle cx="32.0" cy="114" r="4" fill="#2563EB"/>
   <text class="lang" x="42.0" y="117">C</text>
   <text class="pct" x="131.8" y="118" text-anchor="end">17.3%</text>
