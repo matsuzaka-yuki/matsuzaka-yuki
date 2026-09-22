@@ -1,15 +1,20 @@
-
-    <svg width="576.5"  height="120" viewBox="0 0 576.5 120" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
-    <style>
-    .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: #FFB6C1 }
-    .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #666666 }
-    .gray { fill: #858585 }
-    </style>
-    <rect x="0.5" y="0.5" width="575.5" height="99%" rx="4.5" fill="#ffffff" stroke="#e4e2e2"/>
-    <text x="25" y="45" class="text">Something went wrong! file an issue at https://tiny.one/readme-stats</text>
-    <text data-testid="message" x="25" y="55" class="text small">
-      <tspan x="25" dy="18">Could not resolve to a User with the login of 'LyraVoid'.</tspan>
-      <tspan x="25" dy="18" class="gray">Make sure the provided username is not an organization</tspan>
-    </text>
-    </svg>
-  
+<svg width="495" height="140" viewBox="0 0 495 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+  <style>
+    .title { font: 600 17px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #0F172A; }
+    .eyebrow { font: 600 10px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #667085; letter-spacing: 1.6px; }
+    .value { font: 700 24px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #2563EB; }
+    .label { font: 500 10px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #667085; letter-spacing: 1.1px; }
+  </style>
+  <rect x="0.5" y="0.5" width="494" height="139" rx="12" fill="#FFFFFF" stroke="#E4E7EC"/>
+  <text class="title" x="28" y="42">LyraVoid</text>
+  <text class="eyebrow" x="467" y="42" text-anchor="end">ORGANIZATION</text>
+  <line x1="28" y1="60" x2="467" y2="60" stroke="#EAECF0"/>
+  <text class="value" x="100.8" y="101" text-anchor="middle">20</text>
+  <text class="label" x="100.8" y="123" text-anchor="middle">REPOSITORIES</text>
+  <text class="value" x="247.0" y="101" text-anchor="middle">3,566</text>
+  <text class="label" x="247.0" y="123" text-anchor="middle">TOTAL STARS</text>
+  <line x1="173.5" y1="78" x2="173.5" y2="126" stroke="#EAECF0"/>
+  <text class="value" x="393.8" y="101" text-anchor="middle">785</text>
+  <text class="label" x="393.8" y="123" text-anchor="middle">TOTAL FORKS</text>
+  <line x1="320.5" y1="78" x2="320.5" y2="126" stroke="#EAECF0"/>
+</svg>
