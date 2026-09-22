@@ -1,79 +1,86 @@
 <div align="center">
 
-# 松坂ユキ | Matsuzaka Yuki
+# Matsuzaka Yuki
 
-\> ユキの小さなアトリエ · 热爱编程与二次元的技术探索者 ✨ <
+<sub>松坂ユキ</sub>
 
-<sub>代码编织着日常，旋律轻抚着时光 —— 在属于自己的角落慢慢发光。</sub>
+**Student Developer · Web & Backend Engineering**
 
-[GitHub 主页](https://github.com/matsuzaka-yuki) · [技术栈](#-魔法咏唱--tech-stack) · [冒险记录](#-冒险记录--adventure-log) · [通讯](#-通讯--communications)
-
-</div>
-
-<br/>
-
-## 🌸 碎碎念 | 私のアトリエ
-
-**Ciallo～(∠・ω< )⌒★** <img src="img/character.png" alt="松坂ユキ" width="220" align="right" style="margin-left: 20px; margin-bottom: 20px;">
-
-这里是 **松坂ユキ** (Matsuzaka Yuki) ヾ(•ω•`)o  
-叫我 **ユキ (Yuki)** 就可以啦～
-
-> `Matsuzaka Yuki` · 一个在数字世界与现实之间穿梭的旅人。
-
-一名热爱编程的**学生**，目前正在不断探索与拓展自己的技术栈。  
-平时喜欢沉浸在**日本动漫、轻小说**的世界里，耳机里总是循环播放着喜欢的**日语歌曲与 ACG 旋律** 🎧  
-日常主力在 **Windows** 平台上进行开发、学习与折腾。
-
-比起追求繁复的理论，更希望能写出简洁、优雅、让自己和大家都能感到开心与温暖的作品。  
-正在努力 Coding，希望能一步步搭建起属于自己的小世界 ( ´ ▽ ` )ﾉ
-
-会的不多，但也正在认真扩展技能树中：
-
-- `TypeScript` & `JavaScript` for _现代化前端与 Web 交互体验_
-- `Node.js` for _全栈应用与后端服务开发_
-- `Python` for _数据处理与日常自动化脚本编写_
-- `Java` & `Kotlin` for _多端生态与工程化后端探索_
-- `Astro` for _高性能静态内容站点与博客开发_
-- `MySQL` & `MongoDB` for _关系型与文档型数据持久化_
-
-<br/>
-
-***雪の降る日に出会えたら、きっと素敵な物語が始まる。***
-
-<br/>
-
-## 🪄 魔法咏唱 | Tech Stack
-
-<div align="center">
-
-![Skills](https://skillicons.dev/icons?i=html,css,js,ts,nodejs,astro,python,java,kotlin,mysql,mongodb,git,windows,vscode&theme=light)
+[GitHub](https://github.com/matsuzaka-yuki) · [Tech Stack](#tech-stack) · [Organization](#organization) · [Statistics](#statistics) · [Contact](#contact)
 
 </div>
 
-<br/>
+---
 
-## 📜 冒险记录 | Adventure Log
+## Summary
+
+<img src="img/character.png" alt="Matsuzaka Yuki" width="220" align="right" />
+
+I am a student developer working mainly in TypeScript and Node.js, with a growing
+interest in backend services and static site generation. My primary development
+environment is **Arch Linux**, and I am steadily extending my skill set across the
+wider web stack.
+
+Outside of engineering I follow Japanese animation, light novels, and Japanese
+music, an interest that keeps me attentive to visual design and editorial quality
+in the projects I build.
+
+I favor straightforward, maintainable implementations over clever ones, and I aim
+to write software that other people can read, run, and extend without difficulty.
+
+<br clear="right" />
+
+---
+
+## Tech Stack
 
 <div align="center">
-  <img src="https://github-readme-stats-one-bice.vercel.app/api?username=matsuzaka-yuki&locale=cn&show_icons=true&theme=default&hide_border=true&title_color=FFB6C1&icon_color=FFB6C1&text_color=666&bg_color=ffffff" alt="GitHub stats" height="175" />
+
+![Skills](https://skillicons.dev/icons?i=html,css,js,ts,nodejs,astro,python,java,kotlin,mysql,mongodb,git,arch,linux,neovim,vscode&theme=light)
+
+</div>
+
+| Area | Technologies |
+| --- | --- |
+| Languages | TypeScript · JavaScript · Python · Java · Kotlin |
+| Runtime & Frameworks | Node.js · Astro |
+| Data | MySQL · MongoDB |
+| Environment & Tooling | Arch Linux · Git · Neovim · VS Code |
+
+---
+
+## Organization
+
+I am an administrator of [**LyraVoid**](https://github.com/LyraVoid), an open-source
+organization working on Astro-based blog themes and Android root and module tooling.
+
+<div align="center">
+  <img src="profile/org-stats.svg" alt="LyraVoid organization statistics" height="130" />
+</div>
+
+---
+
+## Statistics
+
+<div align="center">
+  <img src="profile/stats.svg" alt="GitHub statistics" height="175" />
   &nbsp;&nbsp;
-  <img src="https://github-readme-stats-one-bice.vercel.app/api/top-langs/?username=matsuzaka-yuki&locale=cn&langs_count=8&layout=compact&theme=default&hide_border=true&title_color=FFB6C1&text_color=666&bg_color=ffffff" alt="Top Langs" height="175" />
+  <img src="profile/top-langs.svg" alt="Most used languages" height="175" />
 </div>
-<br/>
 
-## ✉️ 通讯 | Communications
+---
+
+## Contact
 
 <div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-matsuzaka--yuki-FFB6C1?style=flat-square&logo=github&logoColor=white)](https://github.com/matsuzaka-yuki)
-[![Platform](https://img.shields.io/badge/Platform-Windows-FFB6C1?style=flat-square&logo=windows&logoColor=white)](https://github.com/matsuzaka-yuki)
-[![Email](https://img.shields.io/badge/Email-Contact_Me-FFB6C1?style=flat-square&logo=gmail&logoColor=white)](https://github.com/matsuzaka-yuki)
+[![Platform](https://img.shields.io/badge/Platform-Arch_Linux-FFB6C1?style=flat-square&logo=archlinux&logoColor=white)](https://archlinux.org/)
 
 </div>
 
 <br/>
 
 <div align="center">
-  <sub>在这里留下的每一个脚印，都是成长的证明～ ✨</sub>
+  <sub>Always learning. Always building.</sub>
 </div>
