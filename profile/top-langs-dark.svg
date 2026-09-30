@@ -14,8 +14,8 @@
   <rect x="28" y="74" width="439" height="10" rx="5" fill="#161B22"/>
   <rect x="28.0" y="74" width="71.9" height="10" rx="5" fill="#58A6FF"/>
   <rect x="102.9" y="74" width="63.8" height="10" rx="5" fill="#87BFFF"/>
-  <rect x="169.7" y="74" width="60.6" height="10" rx="5" fill="#A8D1FF"/>
-  <rect x="233.3" y="74" width="49.5" height="10" rx="5" fill="#C6E1FF"/>
+  <rect x="169.6" y="74" width="60.6" height="10" rx="5" fill="#A8D1FF"/>
+  <rect x="233.2" y="74" width="49.4" height="10" rx="5" fill="#C6E1FF"/>
   <circle cx="32.0" cy="114" r="4" fill="#58A6FF"/>
   <text class="lang" x="42.0" y="117">C</text>
   <text class="pct" x="131.8" y="118" text-anchor="end">17.1%</text>
@@ -27,5 +27,5 @@
   <text class="pct" x="351.2" y="118" text-anchor="end">14.5%</text>
   <circle cx="361.2" cy="114" r="4" fill="#C6E1FF"/>
   <text class="lang" x="371.2" y="117">PHP</text>
-  <text class="pct" x="461.0" y="118" text-anchor="end">12.0%</text>
+  <text class="pct" x="461.0" y="118" text-anchor="end">11.9%</text>
 </svg>
