@@ -14,7 +14,7 @@
   <rect x="28" y="74" width="439" height="10" rx="5" fill="#EEF2F6"/>
   <rect x="28.0" y="74" width="73.1" height="10" rx="5" fill="#2563EB"/>
   <rect x="104.1" y="74" width="67.8" height="10" rx="5" fill="#628FF1"/>
-  <rect x="174.9" y="74" width="57.2" height="10" rx="5" fill="#8EAEF5"/>
+  <rect x="174.9" y="74" width="57.3" height="10" rx="5" fill="#8EAEF5"/>
   <rect x="235.2" y="74" width="55.6" height="10" rx="5" fill="#B5CAF8"/>
   <circle cx="32.0" cy="114" r="4" fill="#2563EB"/>
   <text class="lang" x="42.0" y="117">HTML</text>
