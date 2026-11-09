@@ -29,15 +29,11 @@ jobs:
           python3 .github/scripts/stats-card.py --kind org \
             --name LyraVoid \
             --theme blue --also-dark --out profile/org-stats.svg
-          python3 .github/scripts/stats-card.py --kind langs \
-            --name "${{ github.repository_owner }}" \
-            --theme blue --also-dark --out profile/top-langs.svg
 
       - name: Verify cards
         run: |
           status=0
           for card in profile/stats.svg profile/stats-dark.svg \
-                      profile/top-langs.svg profile/top-langs-dark.svg \
                       profile/org-stats.svg profile/org-stats-dark.svg; do
             if [ ! -s "$card" ]; then
               echo "::error file=$card::card was not generated"

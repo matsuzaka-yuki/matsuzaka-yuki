@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render self-hosted statistics cards (profile, organization, languages) as SVG."""
+"""Render self-hosted statistics cards (profile overview, organization) as SVG."""
 
 import argparse
 import datetime
@@ -30,8 +30,10 @@ THEMES = {
     },
 }
 
-WIDTH, HEIGHT = 495, 140
+WIDTH, HEIGHT = 880, 206
+ORG_HEIGHT = 128
 PAD = 28
+
 
 def gh_api(path, paginate=True, optional=False):
     """Run gh api. With optional=True an unreadable resource yields None instead of
@@ -71,13 +73,8 @@ def tint(accent, ratio):
 
 
 def ramp(accent, count):
-    steps = [0.0, 0.28, 0.48, 0.66, 0.80]
+    steps = [0.0, 0.20, 0.36, 0.50, 0.62]
     return [tint(accent, steps[min(i, len(steps) - 1)]) for i in range(count)]
-
-
-def columns(count):
-    step = (WIDTH - 2 * PAD) / float(count)
-    return [PAD + i * step for i in range(count + 1)]
 
 
 def org_metrics(name):
@@ -119,27 +116,34 @@ def languages_for(name):
         for lang, size in (sizes or {}).items():
             totals[lang] = totals.get(lang, 0) + size
     overall = float(sum(totals.values())) or 1.0
-    ranked = sorted(totals.items(), key=lambda kv: kv[1], reverse=True)[:4]
+    ranked = sorted(totals.items(), key=lambda kv: kv[1], reverse=True)[:5]
     return [(lang, size / overall) for lang, size in ranked]
 
 
-def open_card(c, name, eyebrow):
+def icon(name, x, y, size, color):
+    lines = ['  <svg x="%.1f" y="%.1f" width="%d" height="%d" viewBox="%s" fill="%s">'
+             % (x, y, size, size, OCTICON, color)]
+    lines += ['    <path fill-rule="evenodd" d="%s"/>' % path for path in ICONS[name]]
+    lines.append("  </svg>")
+    return lines
+
+
+def open_card(c, height=HEIGHT):
     return [
         '<svg width="%d" height="%d" viewBox="0 0 %d %d" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">'
-        % (WIDTH, HEIGHT, WIDTH, HEIGHT),
+        % (WIDTH, height, WIDTH, height),
         "  <style>",
-        "    .title { font: 600 17px %s; fill: %s; }" % (FONT, c["title"]),
-        "    .eyebrow { font: 600 10px %s; fill: %s; letter-spacing: 1.6px; }" % (FONT, c["muted"]),
-        "    .value { font: 700 21px %s; fill: %s; }" % (FONT, c["accent"]),
+        "    .title { font: 600 16px %s; fill: %s; }" % (FONT, c["title"]),
+        "    .eyebrow { font: 600 9.5px %s; fill: %s; letter-spacing: 1.5px; }" % (FONT, c["muted"]),
+        "    .hero { font: 700 28px %s; fill: %s; letter-spacing: -0.4px; }" % (FONT, c["accent"]),
+        "    .value { font: 700 22px %s; fill: %s; }" % (FONT, c["accent"]),
+        "    .stat { font: 700 15px %s; fill: %s; }" % (FONT, c["accent"]),
         "    .label { font: 500 9px %s; fill: %s; letter-spacing: 1px; }" % (FONT, c["muted"]),
-        "    .lang { font: 600 9.5px %s; fill: %s; letter-spacing: 0.9px; }" % (FONT, c["muted"]),
+        "    .lang { font: 600 10px %s; fill: %s; letter-spacing: 0.9px; }" % (FONT, c["muted"]),
         "    .pct { font: 700 11px %s; fill: %s; }" % (FONT, c["accent"]),
         "  </style>",
         '  <rect x="0.5" y="0.5" width="%d" height="%d" rx="12" fill="%s" stroke="%s"/>'
-        % (WIDTH - 1, HEIGHT - 1, c["bg"], c["border"]),
-        '  <text class="title" x="%d" y="42">%s</text>' % (PAD, name),
-        '  <text class="eyebrow" x="%d" y="42" text-anchor="end">%s</text>' % (WIDTH - PAD, eyebrow),
-        '  <line x1="%d" y1="60" x2="%d" y2="60" stroke="%s"/>' % (PAD, WIDTH - PAD, c["divider"]),
+        % (WIDTH - 1, height - 1, c["bg"], c["border"]),
     ]
 
 
@@ -148,52 +152,74 @@ def write_card(out, lines):
         handle.write("\n".join(lines + ["</svg>"]) + "\n")
 
 
-def render_metrics(name, eyebrow, metrics, theme, out):
+def render_overview(name, metrics, languages, theme, out):
     c = THEMES[theme]
-    edges = columns(len(metrics))
-    lines = open_card(c, name, eyebrow)
-    for index, (icon, label, value) in enumerate(metrics):
-        center = (edges[index] + edges[index + 1]) / 2.0
-        lines.append('  <svg x="%.1f" y="72" width="13" height="13" viewBox="%s" fill="%s">'
-                     % (center - 6.5, OCTICON, c["accent"]))
-        for path in ICONS[icon]:
-            lines.append('    <path fill-rule="evenodd" d="%s"/>' % path)
-        lines.append("  </svg>")
-        lines.append('  <text class="value" x="%.1f" y="109" text-anchor="middle">%s</text>'
-                     % (center, compact(value)))
-        lines.append('  <text class="label" x="%.1f" y="127" text-anchor="middle">%s</text>'
-                     % (center, label.upper()))
-        if index:
-            lines.append('  <line x1="%.1f" y1="78" x2="%.1f" y2="118" stroke="%s"/>'
-                         % (edges[index], edges[index], c["divider"]))
+    split = WIDTH // 2
+    hero, hero_label, hero_value = metrics[0]
+    lines = open_card(c)
+    lines.append('  <text class="title" x="%d" y="40">%s</text>' % (PAD, name))
+    lines.append('  <text class="eyebrow" x="%d" y="40" text-anchor="end">ALL REPOSITORIES</text>'
+                 % (split - PAD))
+    lines.append('  <text class="title" x="%d" y="40">Languages</text>' % (split + PAD))
+    lines.append('  <text class="eyebrow" x="%d" y="40" text-anchor="end">BY CODE SIZE</text>'
+                 % (WIDTH - PAD))
+    lines.append('  <line x1="%d" y1="56" x2="%d" y2="56" stroke="%s"/>'
+                 % (PAD, WIDTH - PAD, c["divider"]))
+    lines.append('  <line x1="%d" y1="74" x2="%d" y2="%d" stroke="%s"/>'
+                 % (split, split, HEIGHT - 18, c["divider"]))
+
+    lines += icon(hero, PAD, 80, 20, c["accent"])
+    lines.append('  <text class="hero" x="%d" y="101">%s</text>' % (PAD + 30, compact(hero_value)))
+    lines.append('  <text class="label" x="%d" y="120">%s</text>' % (PAD + 31, hero_label.upper()))
+    lines.append('  <line x1="%d" y1="130" x2="%d" y2="130" stroke="%s"/>'
+                 % (PAD, split - PAD, c["divider"]))
+    mid = split // 2
+    for index, (name_, label, value) in enumerate(metrics[1:]):
+        x = PAD if index % 2 == 0 else mid + 12
+        end = mid - 12 if index % 2 == 0 else split - PAD
+        y = 158 + (index // 2) * 28
+        lines += icon(name_, x, y - 10, 11, c["muted"])
+        lines.append('  <text class="lang" x="%d" y="%d">%s</text>' % (x + 16, y, label.upper()))
+        lines.append('  <text class="stat" x="%d" y="%d" text-anchor="end">%s</text>'
+                     % (end, y, compact(value)))
+
+    shades = ramp(c["accent"], len(languages))
+    bar_x = split + PAD
+    bar_w = WIDTH - PAD - bar_x
+    for index, ((lang, share), shade) in enumerate(zip(languages, shades)):
+        y = 84 + index * 25
+        lines.append('  <circle cx="%.1f" cy="%.1f" r="3.5" fill="%s"/>' % (bar_x + 3.5, y - 4, shade))
+        lines.append('  <text class="lang" x="%d" y="%d">%s</text>' % (bar_x + 14, y, lang.upper()))
+        lines.append('  <text class="pct" x="%d" y="%d" text-anchor="end">%.1f%%</text>'
+                     % (WIDTH - PAD, y, share * 100))
+        lines.append('  <rect x="%d" y="%d" width="%d" height="4" rx="2" fill="%s"/>'
+                     % (bar_x, y + 5, bar_w, c["track"]))
+        lines.append('  <rect x="%d" y="%d" width="%.1f" height="4" rx="2" fill="%s"/>'
+                     % (bar_x, y + 5, max(share * bar_w, 6), shade))
     write_card(out, lines)
 
 
-def render_languages(name, languages, theme, out):
+def render_org(name, metrics, theme, out):
     c = THEMES[theme]
-    shades = ramp(c["accent"], len(languages))
-    bar_x, bar_w, bar_y, bar_h = PAD, WIDTH - 2 * PAD, 74, 10
-    edges = columns(len(languages))
-    lines = open_card(c, "Languages", "BY CODE SIZE")
-    lines.append('  <rect x="%d" y="%d" width="%d" height="%d" rx="%d" fill="%s"/>'
-                 % (bar_x, bar_y, bar_w, bar_h, bar_h // 2, c["track"]))
-    cursor = bar_x
-    for share, shade in zip([s for _, s in languages], shades):
-        width = max(share * bar_w - 3, 5)
-        lines.append('  <rect x="%.1f" y="%d" width="%.1f" height="%d" rx="%d" fill="%s"/>'
-                     % (cursor, bar_y, width, bar_h, bar_h // 2, shade))
-        cursor += width + 3
-    for index, ((lang, share), shade) in enumerate(zip(languages, shades)):
-        lines.append('  <circle cx="%.1f" cy="114" r="4" fill="%s"/>' % (edges[index] + 4, shade))
-        lines.append('  <text class="lang" x="%.1f" y="117">%s</text>' % (edges[index] + 14, lang.upper()))
-        lines.append('  <text class="pct" x="%.1f" y="118" text-anchor="end">%.1f%%</text>'
-                     % (edges[index + 1] - 6, share * 100))
+    lines = open_card(c, ORG_HEIGHT)
+    lines.append('  <text class="eyebrow" x="%d" y="66">ORGANIZATION</text>' % PAD)
+    lines.append('  <text class="title" x="%d" y="92">%s</text>' % (PAD, name))
+    lines.append('  <line x1="250" y1="42" x2="250" y2="%d" stroke="%s"/>'
+                 % (ORG_HEIGHT - 22, c["divider"]))
+    step = (WIDTH - PAD - 266) / float(len(metrics))
+    for index, (name_, label, value) in enumerate(metrics):
+        center = 266 + (index + 0.5) * step
+        lines += icon(name_, center - 7.5, 44, 15, c["accent"])
+        lines.append('  <text class="value" x="%.1f" y="94" text-anchor="middle">%s</text>'
+                     % (center, compact(value)))
+        lines.append('  <text class="label" x="%.1f" y="114" text-anchor="middle">%s</text>'
+                     % (center, label.upper()))
     write_card(out, lines)
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--kind", choices=("user", "org", "langs"), required=True)
+    parser.add_argument("--kind", choices=("user", "org"), required=True)
     parser.add_argument("--name", required=True)
     parser.add_argument("--out", required=True)
     parser.add_argument("--theme", default="blue", choices=sorted(THEMES))
@@ -204,15 +230,13 @@ def main():
     orgs = [o for o in args.orgs.split(",") if o]
 
     # Fetch once, draw as many times as there are colour schemes.
-    if args.kind == "langs":
-        payload = languages_for(args.name)
-        draw = lambda theme, out: render_languages(args.name, payload, theme, out)
-    elif args.kind == "org":
+    if args.kind == "org":
         payload = org_metrics(args.name)
-        draw = lambda theme, out: render_metrics(args.name, "ORGANIZATION", payload, theme, out)
+        draw = lambda theme, out: render_org(args.name, payload, theme, out)
     else:
-        payload = user_metrics(args.name, orgs)
-        draw = lambda theme, out: render_metrics(args.name, "GITHUB STATS", payload, theme, out)
+        metrics = user_metrics(args.name, orgs)
+        languages = languages_for(args.name)
+        draw = lambda theme, out: render_overview(args.name, metrics, languages, theme, out)
 
     draw(args.theme, args.out)
     if args.also_dark:

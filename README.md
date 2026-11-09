@@ -6,7 +6,7 @@
 
 **Student Developer · Web & Backend Engineering**
 
-[GitHub](https://github.com/matsuzaka-yuki) · [Tech Stack](#tech-stack) · [Organization](#organization) · [Statistics](#statistics) · [Contact](#contact)
+[GitHub](https://github.com/matsuzaka-yuki) · [Tech Stack](#tech-stack) · [Statistics](#statistics) · [Organization](#organization) · [Contact](#contact)
 
 </div>
 
@@ -49,33 +49,28 @@ to write software that other people can read, run, and extend without difficulty
 
 ---
 
+## Statistics
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="profile/stats-dark.svg">
+    <img src="profile/stats.svg" alt="GitHub statistics and most used languages" width="880">
+  </picture>
+</p>
+
+---
+
 ## Organization
 
 I am an administrator of [**LyraVoid**](https://github.com/LyraVoid), an open-source
 organization working on Astro-based blog themes and Android root and module tooling.
 
-<div align="center">
+<p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="profile/org-stats-dark.svg">
-    <img src="profile/org-stats.svg" alt="LyraVoid organization statistics" height="140">
+    <img src="profile/org-stats.svg" alt="LyraVoid organization statistics" width="880">
   </picture>
-</div>
-
----
-
-## Statistics
-
-<div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="profile/stats-dark.svg">
-    <img src="profile/stats.svg" alt="GitHub statistics" height="140">
-  </picture>
-  <br/>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="profile/top-langs-dark.svg">
-    <img src="profile/top-langs.svg" alt="Most used languages" height="140">
-  </picture>
-</div>
+</p>
 
 ---
 
@@ -84,6 +79,8 @@ organization working on Astro-based blog themes and Android root and module tool
 <div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-matsuzaka--yuki-2563EB?style=flat-square&logo=github&logoColor=white)](https://github.com/matsuzaka-yuki)
+[![Blog](https://img.shields.io/badge/Blog-blog.mysqil.com-2563EB?style=flat-square&logo=astro&logoColor=white)](https://blog.mysqil.com/)
+[![LyraVoid](https://img.shields.io/badge/LyraVoid-Organization-2563EB?style=flat-square&logo=github&logoColor=white)](https://github.com/LyraVoid)
 [![Platform](https://img.shields.io/badge/Platform-Arch_Linux-2563EB?style=flat-square&logo=archlinux&logoColor=white)](https://archlinux.org/)
 
 </div>
