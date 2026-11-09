@@ -207,16 +207,16 @@ def stats_card(c, name, stats):
         y = 66 + index * 25
         lines += icon(name_, INNER, y - 11, 16, c["accent"])
         lines.append('  <text class="row" x="%d" y="%d">%s</text>' % (INNER + 23, y, label))
-        lines.append('  <text class="num" x="%d" y="%d" text-anchor="end">%s</text>'
-                     % (338, y, compact(value)))
-    circumference = 2 * math.pi * 34
-    lines.append('  <circle cx="386" cy="100" r="34" fill="none" stroke="%s" stroke-width="6" opacity="0.2"/>'
+        lines.append('  <text class="num" x="%d" y="%d">%s</text>'
+                     % (232, y, compact(value)))
+    circumference = 2 * math.pi * 35
+    lines.append('  <circle cx="385" cy="100" r="35" fill="none" stroke="%s" stroke-width="6" opacity="0.2"/>'
                  % c["accent"])
-    lines.append('  <circle cx="386" cy="100" r="34" fill="none" stroke="%s" stroke-width="6" '
+    lines.append('  <circle cx="385" cy="100" r="35" fill="none" stroke="%s" stroke-width="6" '
                  'stroke-linecap="round" stroke-dasharray="%.2f" stroke-dashoffset="%.2f" '
-                 'transform="rotate(-90 386 100)" opacity="0.8"/>'
+                 'transform="rotate(-90 385 100)" opacity="0.8"/>'
                  % (c["accent"], circumference, circumference * percentile / 100.0))
-    lines.append('  <text class="rank" x="386" y="108" text-anchor="middle">%s</text>'
+    lines.append('  <text class="rank" x="385" y="108" text-anchor="middle">%s</text>'
                  % rank_level(percentile))
     return lines
 
