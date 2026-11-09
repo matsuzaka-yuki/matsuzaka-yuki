@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Render self-hosted statistics cards (profile overview, organization) as SVG."""
+"""Render self-hosted statistics cards (profile row, organization band) as SVG."""
 
 import argparse
 import datetime
 import json
+import math
 import os
 import subprocess
 
@@ -30,9 +31,11 @@ THEMES = {
     },
 }
 
-WIDTH, HEIGHT = 880, 206
+WIDTH = 880
+CARD_W, CARD_H = 428, 195
+CARD_GAP = 24
 ORG_HEIGHT = 128
-PAD = 28
+INNER = 25
 
 
 def gh_api(path, paginate=True, optional=False):
@@ -60,6 +63,18 @@ def search_count(kind, query):
     return gh_api("/search/%s?q=%s&per_page=1" % (kind, query), paginate=False)["total_count"]
 
 
+def profile_totals(name):
+    """Followers and the number of repositories the account has contributed to."""
+    query = ("query{user(login:\"%s\"){followers{totalCount} "
+             "repositoriesContributedTo(first:1,includeUserRepositories:true){totalCount}}}" % name)
+    proc = subprocess.run(["gh", "api", "graphql", "-f", "query=" + query],
+                          capture_output=True, text=True)
+    if proc.returncode != 0:
+        raise SystemExit("gh api graphql failed: %s" % proc.stderr.strip())
+    user = json.loads(proc.stdout)["data"]["user"]
+    return user["followers"]["totalCount"], user["repositoriesContributedTo"]["totalCount"]
+
+
 def compact(number):
     if number >= 10000:
         return "%.1fk" % (number / 1000.0)
@@ -84,7 +99,7 @@ def org_metrics(name):
             ("repo-forked", "Total Forks", sum(r["forks_count"] for r in repos))]
 
 
-def user_metrics(name, orgs):
+def user_stats(name, orgs):
     # Everything the account is responsible for: its own repositories plus the public
     # repositories of the organizations it belongs to, the same span the reference
     # profile covers with role=OWNER,ORGANIZATION_MEMBER. Forks count too: they are
@@ -98,11 +113,16 @@ def user_metrics(name, orgs):
     scopes = ["user:" + name] + ["org:" + org for org in orgs]
     commits = sum(search_count("commits", "author:%s+%s+committer-date:>=%d-01-01" % (name, s, year))
                   for s in scopes)
-    return [("star", "Stars", sum(r["stargazers_count"] for r in repos)),
-            ("git-commit", "Commits %d" % year, commits),
-            ("git-pull-request", "Pull Requests", search_count("issues", "author:%s+type:pr" % name)),
-            ("issue-opened", "Issues", search_count("issues", "author:%s+type:issue" % name)),
-            ("repo", "Repos", len(repos))]
+    followers, contributed = profile_totals(name)
+    return {
+        "stars": sum(r["stargazers_count"] for r in repos),
+        "commits": commits,
+        "prs": search_count("issues", "author:%s+type:pr" % name),
+        "issues": search_count("issues", "author:%s+type:issue" % name),
+        "contributed": contributed,
+        "followers": followers,
+        "year": year,
+    }
 
 
 def languages_for(name):
@@ -120,6 +140,24 @@ def languages_for(name):
     return [(lang, size / overall) for lang, size in ranked]
 
 
+def rank_percentile(stats):
+    """Weighted rank over the usual medians: lower means a stronger profile."""
+    cdf = lambda value: 1 - 2 ** (-value)
+    parts = ((stats["commits"], 1000, 2), (stats["prs"], 50, 3), (stats["issues"], 25, 1),
+             (stats["stars"], 50, 4), (stats["followers"], 10, 1))
+    return 100 * (1 - sum(weight * cdf(value / float(median)) for value, median, weight in parts)
+                  / 11.0)
+
+
+def rank_level(percentile):
+    levels = ("S+", "S", "A+", "A", "B+", "B", "C+", "C", "D")
+    thresholds = (1, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100)
+    for level, threshold in zip(levels, thresholds):
+        if percentile <= threshold:
+            return level
+    return "D"
+
+
 def icon(name, x, y, size, color):
     lines = ['  <svg x="%.1f" y="%.1f" width="%d" height="%d" viewBox="%s" fill="%s">'
              % (x, y, size, size, OCTICON, color)]
@@ -128,23 +166,27 @@ def icon(name, x, y, size, color):
     return lines
 
 
-def open_card(c, height=HEIGHT):
+def open_document(c, height):
     return [
         '<svg width="%d" height="%d" viewBox="0 0 %d %d" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">'
         % (WIDTH, height, WIDTH, height),
         "  <style>",
-        "    .title { font: 600 16px %s; fill: %s; }" % (FONT, c["title"]),
-        "    .eyebrow { font: 600 9.5px %s; fill: %s; letter-spacing: 1.5px; }" % (FONT, c["muted"]),
-        "    .hero { font: 700 28px %s; fill: %s; letter-spacing: -0.4px; }" % (FONT, c["accent"]),
-        "    .value { font: 700 22px %s; fill: %s; }" % (FONT, c["accent"]),
-        "    .stat { font: 700 15px %s; fill: %s; }" % (FONT, c["accent"]),
+        "    .title { font: 600 18px %s; fill: %s; }" % (FONT, c["accent"]),
+        "    .row { font: 600 13.5px %s; fill: %s; }" % (FONT, c["title"]),
+        "    .num { font: 700 13.5px %s; fill: %s; }" % (FONT, c["title"]),
+        "    .legend { font: 600 12.5px %s; fill: %s; }" % (FONT, c["title"]),
+        "    .pct { font: 600 12.5px %s; fill: %s; }" % (FONT, c["muted"]),
+        "    .rank { font: 800 22px %s; fill: %s; }" % (FONT, c["title"]),
+        "    .value { font: 700 22px %s; fill: %s; }" % (FONT, c["title"]),
         "    .label { font: 500 9px %s; fill: %s; letter-spacing: 1px; }" % (FONT, c["muted"]),
-        "    .lang { font: 600 10px %s; fill: %s; letter-spacing: 0.9px; }" % (FONT, c["muted"]),
-        "    .pct { font: 700 11px %s; fill: %s; }" % (FONT, c["accent"]),
+        "    .eyebrow { font: 600 9.5px %s; fill: %s; letter-spacing: 1.5px; }" % (FONT, c["muted"]),
         "  </style>",
-        '  <rect x="0.5" y="0.5" width="%d" height="%d" rx="12" fill="%s" stroke="%s"/>'
-        % (WIDTH - 1, height - 1, c["bg"], c["border"]),
     ]
+
+
+def frame(c, width=CARD_W, height=CARD_H):
+    return ['  <rect x="0.5" y="0.5" width="%d" height="%d" rx="12" fill="%s" stroke="%s"/>'
+            % (width - 1, height - 1, c["bg"], c["border"])]
 
 
 def write_card(out, lines):
@@ -152,61 +194,74 @@ def write_card(out, lines):
         handle.write("\n".join(lines + ["</svg>"]) + "\n")
 
 
-def render_overview(name, metrics, languages, theme, out):
-    c = THEMES[theme]
-    split = WIDTH // 2
-    hero, hero_label, hero_value = metrics[0]
-    lines = open_card(c)
-    lines.append('  <text class="title" x="%d" y="40">%s</text>' % (PAD, name))
-    lines.append('  <text class="eyebrow" x="%d" y="40" text-anchor="end">ALL REPOSITORIES</text>'
-                 % (split - PAD))
-    lines.append('  <text class="title" x="%d" y="40">Languages</text>' % (split + PAD))
-    lines.append('  <text class="eyebrow" x="%d" y="40" text-anchor="end">BY CODE SIZE</text>'
-                 % (WIDTH - PAD))
-    lines.append('  <line x1="%d" y1="56" x2="%d" y2="56" stroke="%s"/>'
-                 % (PAD, WIDTH - PAD, c["divider"]))
-    lines.append('  <line x1="%d" y1="74" x2="%d" y2="%d" stroke="%s"/>'
-                 % (split, split, HEIGHT - 18, c["divider"]))
+def stats_card(c, name, stats):
+    rows = [("star", "Total Stars", stats["stars"]),
+            ("git-commit", "Commits %d" % stats["year"], stats["commits"]),
+            ("git-pull-request", "Pull Requests", stats["prs"]),
+            ("issue-opened", "Issues", stats["issues"]),
+            ("people", "Contributed to", stats["contributed"])]
+    percentile = rank_percentile(stats)
+    lines = frame(c)
+    lines.append('  <text class="title" x="%d" y="32">%s\'s GitHub Stats</text>' % (INNER, name))
+    for index, (name_, label, value) in enumerate(rows):
+        y = 66 + index * 25
+        lines += icon(name_, INNER, y - 11, 16, c["accent"])
+        lines.append('  <text class="row" x="%d" y="%d">%s</text>' % (INNER + 23, y, label))
+        lines.append('  <text class="num" x="%d" y="%d" text-anchor="end">%s</text>'
+                     % (338, y, compact(value)))
+    circumference = 2 * math.pi * 34
+    lines.append('  <circle cx="386" cy="100" r="34" fill="none" stroke="%s" stroke-width="6" opacity="0.2"/>'
+                 % c["accent"])
+    lines.append('  <circle cx="386" cy="100" r="34" fill="none" stroke="%s" stroke-width="6" '
+                 'stroke-linecap="round" stroke-dasharray="%.2f" stroke-dashoffset="%.2f" '
+                 'transform="rotate(-90 386 100)" opacity="0.8"/>'
+                 % (c["accent"], circumference, circumference * percentile / 100.0))
+    lines.append('  <text class="rank" x="386" y="108" text-anchor="middle">%s</text>'
+                 % rank_level(percentile))
+    return lines
 
-    lines += icon(hero, PAD, 80, 20, c["accent"])
-    lines.append('  <text class="hero" x="%d" y="101">%s</text>' % (PAD + 30, compact(hero_value)))
-    lines.append('  <text class="label" x="%d" y="120">%s</text>' % (PAD + 31, hero_label.upper()))
-    lines.append('  <line x1="%d" y1="130" x2="%d" y2="130" stroke="%s"/>'
-                 % (PAD, split - PAD, c["divider"]))
-    mid = split // 2
-    for index, (name_, label, value) in enumerate(metrics[1:]):
-        x = PAD if index % 2 == 0 else mid + 12
-        end = mid - 12 if index % 2 == 0 else split - PAD
-        y = 158 + (index // 2) * 28
-        lines += icon(name_, x, y - 10, 11, c["muted"])
-        lines.append('  <text class="lang" x="%d" y="%d">%s</text>' % (x + 16, y, label.upper()))
-        lines.append('  <text class="stat" x="%d" y="%d" text-anchor="end">%s</text>'
-                     % (end, y, compact(value)))
 
+def langs_card(c, languages):
     shades = ramp(c["accent"], len(languages))
-    bar_x = split + PAD
-    bar_w = WIDTH - PAD - bar_x
+    bar_x, bar_w, bar_h = INNER, CARD_W - 2 * INNER, 8
+    lines = frame(c)
+    lines.append('  <text class="title" x="%d" y="32">Most Used Languages</text>' % INNER)
+    lines.append('  <rect x="%d" y="48" width="%d" height="%d" rx="%d" fill="%s"/>'
+                 % (bar_x, bar_w, bar_h, bar_h // 2, c["track"]))
+    cursor = bar_x
+    for share, shade in zip([s for _, s in languages], shades):
+        width = max(share * bar_w - 2, 4)
+        lines.append('  <rect x="%.1f" y="48" width="%.1f" height="%d" rx="%d" fill="%s"/>'
+                     % (cursor, width, bar_h, bar_h // 2, shade))
+        cursor += width + 2
     for index, ((lang, share), shade) in enumerate(zip(languages, shades)):
-        y = 84 + index * 25
-        lines.append('  <circle cx="%.1f" cy="%.1f" r="3.5" fill="%s"/>' % (bar_x + 3.5, y - 4, shade))
-        lines.append('  <text class="lang" x="%d" y="%d">%s</text>' % (bar_x + 14, y, lang.upper()))
+        y = 80 + index * 24
+        lines.append('  <circle cx="%d" cy="%d" r="4" fill="%s"/>' % (INNER + 4, y - 4, shade))
+        lines.append('  <text class="legend" x="%d" y="%d">%s</text>' % (INNER + 17, y, lang.upper()))
         lines.append('  <text class="pct" x="%d" y="%d" text-anchor="end">%.1f%%</text>'
-                     % (WIDTH - PAD, y, share * 100))
-        lines.append('  <rect x="%d" y="%d" width="%d" height="4" rx="2" fill="%s"/>'
-                     % (bar_x, y + 5, bar_w, c["track"]))
-        lines.append('  <rect x="%d" y="%d" width="%.1f" height="4" rx="2" fill="%s"/>'
-                     % (bar_x, y + 5, max(share * bar_w, 6), shade))
+                     % (CARD_W - INNER, y, share * 100))
+    return lines
+
+
+def render_overview(name, stats, languages, theme, out):
+    c = THEMES[theme]
+    lines = open_document(c, CARD_H)
+    lines += stats_card(c, name, stats)
+    lines.append('  <g transform="translate(%d, 0)">' % (CARD_W + CARD_GAP))
+    lines += langs_card(c, languages)
+    lines.append("  </g>")
     write_card(out, lines)
 
 
 def render_org(name, metrics, theme, out):
     c = THEMES[theme]
-    lines = open_card(c, ORG_HEIGHT)
-    lines.append('  <text class="eyebrow" x="%d" y="66">ORGANIZATION</text>' % PAD)
-    lines.append('  <text class="title" x="%d" y="92">%s</text>' % (PAD, name))
+    lines = open_document(c, ORG_HEIGHT)
+    lines += frame(c, WIDTH, ORG_HEIGHT)
+    lines.append('  <text class="eyebrow" x="%d" y="66">ORGANIZATION</text>' % INNER)
+    lines.append('  <text class="title" x="%d" y="92">%s</text>' % (INNER, name))
     lines.append('  <line x1="250" y1="42" x2="250" y2="%d" stroke="%s"/>'
                  % (ORG_HEIGHT - 22, c["divider"]))
-    step = (WIDTH - PAD - 266) / float(len(metrics))
+    step = (WIDTH - INNER - 266) / float(len(metrics))
     for index, (name_, label, value) in enumerate(metrics):
         center = 266 + (index + 0.5) * step
         lines += icon(name_, center - 7.5, 44, 15, c["accent"])
@@ -234,9 +289,9 @@ def main():
         payload = org_metrics(args.name)
         draw = lambda theme, out: render_org(args.name, payload, theme, out)
     else:
-        metrics = user_metrics(args.name, orgs)
+        stats = user_stats(args.name, orgs)
         languages = languages_for(args.name)
-        draw = lambda theme, out: render_overview(args.name, metrics, languages, theme, out)
+        draw = lambda theme, out: render_overview(args.name, stats, languages, theme, out)
 
     draw(args.theme, args.out)
     if args.also_dark:

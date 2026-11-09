@@ -1,71 +1,69 @@
-<svg width="880" height="206" viewBox="0 0 880 206" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+<svg width="880" height="195" viewBox="0 0 880 195" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
   <style>
-    .title { font: 600 16px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #0F172A; }
-    .eyebrow { font: 600 9.5px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #667085; letter-spacing: 1.5px; }
-    .hero { font: 700 28px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #2563EB; letter-spacing: -0.4px; }
-    .value { font: 700 22px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #2563EB; }
-    .stat { font: 700 15px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #2563EB; }
+    .title { font: 600 18px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #2563EB; }
+    .row { font: 600 13.5px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #0F172A; }
+    .num { font: 700 13.5px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #0F172A; }
+    .legend { font: 600 12.5px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #0F172A; }
+    .pct { font: 600 12.5px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #667085; }
+    .rank { font: 800 22px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #0F172A; }
+    .value { font: 700 22px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #0F172A; }
     .label { font: 500 9px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #667085; letter-spacing: 1px; }
-    .lang { font: 600 10px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #667085; letter-spacing: 0.9px; }
-    .pct { font: 700 11px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #2563EB; }
+    .eyebrow { font: 600 9.5px Inter, 'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif; fill: #667085; letter-spacing: 1.5px; }
   </style>
-  <rect x="0.5" y="0.5" width="879" height="205" rx="12" fill="#FFFFFF" stroke="#DBE3F0"/>
-  <text class="title" x="28" y="40">matsuzaka-yuki</text>
-  <text class="eyebrow" x="412" y="40" text-anchor="end">ALL REPOSITORIES</text>
-  <text class="title" x="468" y="40">Languages</text>
-  <text class="eyebrow" x="852" y="40" text-anchor="end">BY CODE SIZE</text>
-  <line x1="28" y1="56" x2="852" y2="56" stroke="#EAECF0"/>
-  <line x1="440" y1="74" x2="440" y2="188" stroke="#EAECF0"/>
-  <svg x="28.0" y="80.0" width="20" height="20" viewBox="0 0 16 16" fill="#2563EB">
+  <rect x="0.5" y="0.5" width="427" height="194" rx="12" fill="#FFFFFF" stroke="#DBE3F0"/>
+  <text class="title" x="25" y="32">matsuzaka-yuki's GitHub Stats</text>
+  <svg x="25.0" y="55.0" width="16" height="16" viewBox="0 0 16 16" fill="#2563EB">
     <path fill-rule="evenodd" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/>
   </svg>
-  <text class="hero" x="58" y="101">4,976</text>
-  <text class="label" x="59" y="120">STARS</text>
-  <line x1="28" y1="130" x2="412" y2="130" stroke="#EAECF0"/>
-  <svg x="28.0" y="148.0" width="11" height="11" viewBox="0 0 16 16" fill="#667085">
+  <text class="row" x="48" y="66">Total Stars</text>
+  <text class="num" x="338" y="66" text-anchor="end">4,976</text>
+  <svg x="25.0" y="80.0" width="16" height="16" viewBox="0 0 16 16" fill="#2563EB">
     <path fill-rule="evenodd" d="M11.93 8.5a4.002 4.002 0 0 1-7.86 0H.75a.75.75 0 0 1 0-1.5h3.32a4.002 4.002 0 0 1 7.86 0h3.32a.75.75 0 0 1 0 1.5Zm-1.43-.75a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z"/>
   </svg>
-  <text class="lang" x="44" y="158">COMMITS 2026</text>
-  <text class="stat" x="208" y="158" text-anchor="end">3,106</text>
-  <svg x="232.0" y="148.0" width="11" height="11" viewBox="0 0 16 16" fill="#667085">
+  <text class="row" x="48" y="91">Commits 2026</text>
+  <text class="num" x="338" y="91" text-anchor="end">4,785</text>
+  <svg x="25.0" y="105.0" width="16" height="16" viewBox="0 0 16 16" fill="#2563EB">
     <path fill-rule="evenodd" d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"/>
   </svg>
-  <text class="lang" x="248" y="158">PULL REQUESTS</text>
-  <text class="stat" x="412" y="158" text-anchor="end">41</text>
-  <svg x="28.0" y="176.0" width="11" height="11" viewBox="0 0 16 16" fill="#667085">
+  <text class="row" x="48" y="116">Pull Requests</text>
+  <text class="num" x="338" y="116" text-anchor="end">41</text>
+  <svg x="25.0" y="130.0" width="16" height="16" viewBox="0 0 16 16" fill="#2563EB">
     <path fill-rule="evenodd" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/>
     <path fill-rule="evenodd" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"/>
   </svg>
-  <text class="lang" x="44" y="186">ISSUES</text>
-  <text class="stat" x="208" y="186" text-anchor="end">9</text>
-  <svg x="232.0" y="176.0" width="11" height="11" viewBox="0 0 16 16" fill="#667085">
-    <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/>
+  <text class="row" x="48" y="141">Issues</text>
+  <text class="num" x="338" y="141" text-anchor="end">9</text>
+  <svg x="25.0" y="155.0" width="16" height="16" viewBox="0 0 16 16" fill="#2563EB">
+    <path fill-rule="evenodd" d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"/>
   </svg>
-  <text class="lang" x="248" y="186">REPOS</text>
-  <text class="stat" x="412" y="186" text-anchor="end">100</text>
-  <circle cx="471.5" cy="80.0" r="3.5" fill="#2563EB"/>
-  <text class="lang" x="482" y="84">HTML</text>
-  <text class="pct" x="852" y="84" text-anchor="end">17.3%</text>
-  <rect x="468" y="89" width="384" height="4" rx="2" fill="#EEF2F6"/>
-  <rect x="468" y="89" width="66.5" height="4" rx="2" fill="#2563EB"/>
-  <circle cx="471.5" cy="105.0" r="3.5" fill="#5182EF"/>
-  <text class="lang" x="482" y="109">C</text>
-  <text class="pct" x="852" y="109" text-anchor="end">16.1%</text>
-  <rect x="468" y="114" width="384" height="4" rx="2" fill="#EEF2F6"/>
-  <rect x="468" y="114" width="61.9" height="4" rx="2" fill="#5182EF"/>
-  <circle cx="471.5" cy="130.0" r="3.5" fill="#739BF2"/>
-  <text class="lang" x="482" y="134">PYTHON</text>
-  <text class="pct" x="852" y="134" text-anchor="end">13.7%</text>
-  <rect x="468" y="139" width="384" height="4" rx="2" fill="#EEF2F6"/>
-  <rect x="468" y="139" width="52.8" height="4" rx="2" fill="#739BF2"/>
-  <circle cx="471.5" cy="155.0" r="3.5" fill="#92B1F5"/>
-  <text class="lang" x="482" y="159">PHP</text>
-  <text class="pct" x="852" y="159" text-anchor="end">13.3%</text>
-  <rect x="468" y="164" width="384" height="4" rx="2" fill="#EEF2F6"/>
-  <rect x="468" y="164" width="51.3" height="4" rx="2" fill="#92B1F5"/>
-  <circle cx="471.5" cy="180.0" r="3.5" fill="#ACC4F7"/>
-  <text class="lang" x="482" y="184">KOTLIN</text>
-  <text class="pct" x="852" y="184" text-anchor="end">9.5%</text>
-  <rect x="468" y="189" width="384" height="4" rx="2" fill="#EEF2F6"/>
-  <rect x="468" y="189" width="36.6" height="4" rx="2" fill="#ACC4F7"/>
+  <text class="row" x="48" y="166">Contributed to</text>
+  <text class="num" x="338" y="166" text-anchor="end">135</text>
+  <circle cx="386" cy="100" r="34" fill="none" stroke="#2563EB" stroke-width="6" opacity="0.2"/>
+  <circle cx="386" cy="100" r="34" fill="none" stroke="#2563EB" stroke-width="6" stroke-linecap="round" stroke-dasharray="213.63" stroke-dashoffset="49.54" transform="rotate(-90 386 100)" opacity="0.8"/>
+  <text class="rank" x="386" y="108" text-anchor="middle">A+</text>
+  <g transform="translate(452, 0)">
+  <rect x="0.5" y="0.5" width="427" height="194" rx="12" fill="#FFFFFF" stroke="#DBE3F0"/>
+  <text class="title" x="25" y="32">Most Used Languages</text>
+  <rect x="25" y="48" width="378" height="8" rx="4" fill="#EEF2F6"/>
+  <rect x="25.0" y="48" width="63.5" height="8" rx="4" fill="#2563EB"/>
+  <rect x="90.5" y="48" width="59.0" height="8" rx="4" fill="#5182EF"/>
+  <rect x="151.5" y="48" width="49.9" height="8" rx="4" fill="#739BF2"/>
+  <rect x="203.4" y="48" width="48.5" height="8" rx="4" fill="#92B1F5"/>
+  <rect x="253.9" y="48" width="34.0" height="8" rx="4" fill="#ACC4F7"/>
+  <circle cx="29" cy="76" r="4" fill="#2563EB"/>
+  <text class="legend" x="42" y="80">HTML</text>
+  <text class="pct" x="403" y="80" text-anchor="end">17.3%</text>
+  <circle cx="29" cy="100" r="4" fill="#5182EF"/>
+  <text class="legend" x="42" y="104">C</text>
+  <text class="pct" x="403" y="104" text-anchor="end">16.1%</text>
+  <circle cx="29" cy="124" r="4" fill="#739BF2"/>
+  <text class="legend" x="42" y="128">PYTHON</text>
+  <text class="pct" x="403" y="128" text-anchor="end">13.7%</text>
+  <circle cx="29" cy="148" r="4" fill="#92B1F5"/>
+  <text class="legend" x="42" y="152">PHP</text>
+  <text class="pct" x="403" y="152" text-anchor="end">13.3%</text>
+  <circle cx="29" cy="172" r="4" fill="#ACC4F7"/>
+  <text class="legend" x="42" y="176">KOTLIN</text>
+  <text class="pct" x="403" y="176" text-anchor="end">9.5%</text>
+  </g>
 </svg>
